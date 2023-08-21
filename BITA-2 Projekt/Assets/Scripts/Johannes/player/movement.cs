@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class movement : MonoBehaviour
@@ -8,6 +9,10 @@ public class movement : MonoBehaviour
     public float movespeed;
     public Rigidbody2D rb;
 
+    public GameObject nearbyobject;
+
+    public KeyCode assigned;
+
     Vector2 moveing;
 
     void Start()
@@ -15,6 +20,8 @@ public class movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     #endregion
+
+    #region Updates
     void Update()
     {
         moveing.x = Input.GetAxisRaw("Horizontal");
@@ -25,11 +32,12 @@ public class movement : MonoBehaviour
     {
         Move();
     }
+    #endregion
 
     #region Movement
     void Move()
     {
-        rb.MovePosition(moveing);
+        rb.MovePosition(rb.position + moveing * movespeed * Time.fixedDeltaTime);
     }
     #endregion
 }

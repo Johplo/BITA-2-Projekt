@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region DavidMovement
     public float moveSpeed;
 
     public Rigidbody2D rb;
@@ -12,12 +13,12 @@ public class PlayerMovement : MonoBehaviour
  
     void Update()
     {
-        
+        ProcessInputs();
     }
 
     private void FixedUpdate()
     {
-        //Physics Calculations
+        Move();
     }
 
     void ProcessInputs()
@@ -25,12 +26,12 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-
+        moveDirection = new Vector2(moveX, moveY);
     }
 
     void Move() 
-    { 
-        
+    {  
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
-
+    #endregion
 }

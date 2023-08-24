@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,10 +11,53 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     private Vector2 moveDirection;
- 
+    private Vector2 smoothedMovement;
+    private Vector2 smoothVelocity;
+    //Dash
+    private float activeMoveSpeed;
+    public float dashSpeed;
+
+    public float dashLength = .5f, dashCooldown = 1f;
+
+    [SerializeField]
+    private float dashCounter;
+    [SerializeField]
+    private float dashCoolCounter;
+
+
+    void Start()
+    {
+        activeMoveSpeed = moveSpeed;
+    }
     void Update()
     {
         ProcessInputs();
+
+        //Dash
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dashCoolCounter <= 0 && dashCounter <= 0)
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+            }
+        }
+
+        if (dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+
+            if (dashCounter <= 0)
+            {
+                activeMoveSpeed = moveSpeed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+
+        if (dashCoolCounter >= 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
@@ -31,8 +75,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Move() 
-    {  
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    {
+        smoothedMovement = Vector2.SmoothDamp(smoothedMovement, moveDirection, ref smoothVelocity, 0.1f);
+        rb.velocity = smoothedMovement * activeMoveSpeed;
     }
     #endregion
 }

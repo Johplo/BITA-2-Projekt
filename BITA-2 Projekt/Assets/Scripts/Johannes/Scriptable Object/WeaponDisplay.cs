@@ -14,5 +14,13 @@ public class WeaponDisplay : MonoBehaviour
 
     public int typeID;
 
-    #endregion[Tooltip()]
+    private void Start()
+    {
+        ItemPreview = weapon.Picture;
+        ItemName = weapon.Name;
+        ItemDescription = weapon.Description;
+
+        typeID = weapon.typeID;
+    }
+    #endregion
 }

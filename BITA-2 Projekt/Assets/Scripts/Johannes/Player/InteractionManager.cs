@@ -11,6 +11,7 @@ public class InteractionManager : MonoBehaviour
 
     public ItemManagementUI itemManagementUI;
 
+    #region Triggers
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Item")) {
             items.Add(collision.gameObject);
@@ -23,6 +24,7 @@ public class InteractionManager : MonoBehaviour
             itemManagementUI.RemovingUpdate(collision.gameObject);
         }
     }
+    #endregion
     #region Valuepublication 
     public List<GameObject> GetItems() {
         return items;

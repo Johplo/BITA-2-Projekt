@@ -7,6 +7,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapons/closeRange/Weapon")]
 public class Weapon : ScriptableObject
 {
+    #region Johannes
     public int ID;
     public int typeID;
 
@@ -16,4 +17,5 @@ public class Weapon : ScriptableObject
     public string Description;
 
     public Sprite Picture;
+    #endregion
 }

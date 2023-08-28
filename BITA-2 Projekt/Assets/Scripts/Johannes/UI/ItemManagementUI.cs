@@ -51,7 +51,8 @@ public class ItemManagementUI : MonoBehaviour
 
         selectedItems[i].transform.SetParent(gameObject.transform.GetChild(0));
 
-        selectedItems[i].transform.localPosition = new Vector3(0, 275 - (25 * selectedItems.IndexOf(selectedItems[i])), 0);
+        selectedItems[i].transform.localScale = new Vector3(1,1,1);
+        selectedItems[i].transform.localPosition = new Vector3(0, 275 - (50 * selectedItems.IndexOf(selectedItems[i])), 0);
 
         selectedItems[i].gameObject.transform.GetChild(0).GetComponent<Image>().sprite = ItemPreview;
         selectedItems[i].gameObject.transform.GetChild(1).GetComponent<TMP_Text>().text = ItemName;

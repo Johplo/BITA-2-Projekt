@@ -18,29 +18,33 @@ public class FillStatusBar : MonoBehaviour
 
     void Update()
     {
-        if (slider.value <= slider.minValue) 
+        if (slider.value <= slider.minValue)
         {
             fillImage.enabled = false;
         }
 
-        if (slider.value > slider.minValue && !fillImage.enabled) 
+        if (slider.value > slider.minValue && !fillImage.enabled)
         {
-            fillImage.enabled=true;
+            fillImage.enabled = true;
         }
 
         float fillvalue = PlayerHealth.currentHealth / PlayerHealth.maxHealth;
 
-        if (fillvalue <= slider.maxValue / 3) 
+        if (fillvalue <= slider.maxValue / 3)
         {
             fillImage.color = Color.black; //Critical Contition
         }
 
         if (fillvalue > slider.maxValue / 3)
         {
-            fillImage.color = Color.red; 
+            fillImage.color = Color.red;
         }
 
         slider.value = fillvalue;
+
+
+
+
 
     }
 }

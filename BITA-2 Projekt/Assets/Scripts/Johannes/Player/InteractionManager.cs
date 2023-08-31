@@ -13,15 +13,15 @@ public class InteractionManager : MonoBehaviour
 
     #region Triggers
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Item")) {
+        if (collision.gameObject.CompareTag("Item") && !items.Contains(collision.gameObject)) {
             items.Add(collision.gameObject);
             itemManagementUI.AddingUpdate(collision.gameObject);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Item")) {
-            items.Remove(collision.gameObject);
-            itemManagementUI.RemovingUpdate(collision.gameObject);
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Item") && items.Contains(other.gameObject)) {
+            items.Remove(other.gameObject);
+            itemManagementUI.RemovingUpdate(other.gameObject);
         }
     }
     #endregion

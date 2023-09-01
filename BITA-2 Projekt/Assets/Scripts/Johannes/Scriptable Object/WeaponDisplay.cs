@@ -13,6 +13,7 @@ public class WeaponDisplay : MonoBehaviour
     public string ItemDescription;
 
     public int typeID;
+    public int ID;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class WeaponDisplay : MonoBehaviour
         ItemDescription = weapon.Description;
 
         typeID = weapon.typeID;
+        ID = weapon.ID;
     }
     #endregion
 }

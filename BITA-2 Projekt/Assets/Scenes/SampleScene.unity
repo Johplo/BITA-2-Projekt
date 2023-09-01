@@ -158,6 +158,7 @@ MonoBehaviour:
   ItemName: 
   ItemDescription: 
   typeID: 0
+  ID: 0
 --- !u!58 &407645608
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -654,6 +655,7 @@ MonoBehaviour:
   ItemName: 
   ItemDescription: 
   typeID: 0
+  ID: 0
 --- !u!58 &1296723602
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -731,7 +733,7 @@ Transform:
   m_GameObject: {fileID: 1353814128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -9.09, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -789,6 +791,7 @@ MonoBehaviour:
   ItemName: 
   ItemDescription: 
   typeID: 0
+  ID: 0
 --- !u!1 &1532377630
 GameObject:
   m_ObjectHideFlags: 0

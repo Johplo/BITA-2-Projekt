@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/davidmovement.unity
     guid: e13e89958799d5c4786097b659940be6
+  - enabled: 1
+    path: Assets/Scenes/Lab.unity
+    guid: 7bd21da16f50575459700ce24a95a94d
   m_configObjects: {}

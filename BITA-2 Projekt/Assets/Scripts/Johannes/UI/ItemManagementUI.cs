@@ -7,6 +7,10 @@ using Unity.VisualScripting;
 
 public class ItemManagementUI : MonoBehaviour
 {
+    /*
+        Script zum erstellen von UI element, wenn sich Items in der Naehe befinden.
+        Wenn entfernung zum Objekt besteht, wird es geloescht.
+    */
     #region Johannes
     public InteractionManager interaction;
 

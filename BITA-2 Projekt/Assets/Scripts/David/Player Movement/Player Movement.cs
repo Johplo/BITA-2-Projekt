@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,10 +21,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float dashLength = .5f, dashCooldown = 1f;
 
-    [SerializeField]
     private float dashCounter;
-    [SerializeField]
     private float dashCoolCounter;
+
+    //Objekt, in dem alle Animationen gespeichert sind
+    public Animator anim;
 
 
     void Start()
@@ -72,6 +75,33 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveDirection = new Vector2(moveX, moveY);
+
+        //Alle Variablen, die Gesetz werden muessen um animationmen zum Abspielen zu bringen
+        //Setz Speed auf die geschwindigkeit.
+        anim.SetFloat("Speed", moveDirection.sqrMagnitude);
+        //Setzt alle Axen im Animator auf die Axen vom Spieler
+        anim.SetFloat("Horizontal", moveX);
+        anim.SetFloat("Vertical", moveY);
+
+        if(moveX >= 0.1f || moveY >= 0.1f)CheckDirection(moveX, moveY);
+    }
+
+    //Setzt die Richtung,damit der wchsel zu Idle passt
+    void CheckDirection(float _moveX, float _moveY)
+    {
+        if (_moveX >= 0.9f && _moveY < 0.9f && _moveY > -0.9f)
+        {
+            anim.SetInteger("Dir", 1);
+        } else if (_moveX <= -0.9f && _moveY < 0.9f && _moveY > -0.9f)
+        {
+            anim.SetInteger("Dir", 3);
+        } else if (_moveY >= 0.9f && _moveX < 0.9f && _moveX > -0.9f)
+        {
+            anim.SetInteger("Dir", 0);
+        } else if (_moveY <= -0.9f && _moveX < 0.9f && _moveX > -0.9f)
+        {
+            anim.SetInteger("Dir", 2);
+        }
     }
 
     void Move() 

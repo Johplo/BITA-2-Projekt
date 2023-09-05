@@ -24,7 +24,10 @@ public class Health : MonoBehaviour
 
     public void Heal(int amount)
     {
-        currentHealth += amount;
+        if (GameObject.Find("Infos").GetComponent<ItemInfo>().getHealamount() > 0)
+        {
+            currentHealth += amount;
+        }
 
         if (currentHealth > maxHealth)
         {

@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class button : MonoBehaviour
@@ -13,25 +16,51 @@ public class button : MonoBehaviour
     private int ID;
     private int typeID;
 
+    public string ItemName;
+
     private Weapon weaponInfo;
 
-    private void Awake()
+    private Healflask healflask;
+
+    private GameObject Canvas;
+
+    private void ItemInfoCreation()
     {
-        weaponInfo = GameObject.Find("Info").GetComponent<ItemInfo>().FindObject(typeID, ID);
+        Canvas = this.gameObject.transform.parent.transform.parent.gameObject;
+        if (typeID == 0)
+        {
+            weaponInfo = GameObject.Find("Infos").GetComponent<ItemInfo>().FindWeapon(ID);
+            healflask = null;
+            ItemName = weaponInfo.Name;
+        } else if (typeID == 1)
+        {
+            healflask = GameObject.Find("Infos").GetComponent<ItemInfo>().FindHealflask(ID);
+            weaponInfo = null;
+            ItemName = weaponInfo.Name;
+        }
     }
 
+    #region ButtonAction
     public void AddtoInventory()
     {
         if (typeID == 0)
         {
-            //muck rueckwaerts
+            GameObject.Find("Player").GetComponent<InteractionManager>().RemoveItem(ItemName);
+            Destroy(this.gameObject);
+            Canvas.GetComponent<ItemManagementUI>().InventoryRemove(name);
+        } else if (typeID == 1)
+        {
+            GameObject.Find("Infos").GetComponent<ItemInfo>().AddHealflask(healflask.Healstrength);
+            GameObject.Find("Player").GetComponent<InteractionManager>().RemoveItem(ItemName);
+            Destroy(this.gameObject);
         }
     }
-
+    #endregion
     #region PublicVariable
     public void SetIDs(int ID, int typeID) {
         this.ID = ID;
         this.typeID = typeID;
+        ItemInfoCreation();
     }
 
     public int gettypeID() {

@@ -17,9 +17,12 @@ public class WeaponDisplay : MonoBehaviour
 
     private void Start()
     {
+
         ItemPreview = weapon.Picture;
         ItemName = weapon.Name;
         ItemDescription = weapon.Description;
+
+        transform.name = ItemName;
 
         typeID = weapon.typeID;
         ID = weapon.ID;

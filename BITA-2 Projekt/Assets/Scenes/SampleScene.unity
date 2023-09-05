@@ -515,8 +515,7 @@ MonoBehaviour:
   dashSpeed: 0
   dashLength: 0.5
   dashCooldown: 1
-  dashCounter: 0
-  dashCoolCounter: 0
+  anim: {fileID: 821987382}
 --- !u!4 &821987379
 Transform:
   m_ObjectHideFlags: 0
@@ -1105,6 +1104,10 @@ PrefabInstance:
     - target: {fileID: 3486159837806496757, guid: 8166e2c40d7265a4b874cdf6e6e08ec5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181234923737132370, guid: 8166e2c40d7265a4b874cdf6e6e08ec5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6665006809377013248, guid: 8166e2c40d7265a4b874cdf6e6e08ec5, type: 3}
       propertyPath: m_Name

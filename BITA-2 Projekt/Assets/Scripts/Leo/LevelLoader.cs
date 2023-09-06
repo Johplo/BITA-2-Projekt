@@ -12,10 +12,7 @@ public class LevelLoader : MonoBehaviour
     public float transitionTime = 1f;
     void Update()
     {
-        void OnCollisionEnter2D(Collision2D collision)
-        {
-            LoadNextLevel();
-        }
+        //LoadNextLevel();
     }
 
     public void LoadNextLevel()

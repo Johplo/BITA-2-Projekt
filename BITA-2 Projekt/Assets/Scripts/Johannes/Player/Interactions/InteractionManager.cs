@@ -32,10 +32,18 @@ public class InteractionManager : MonoBehaviour
 
     public void RemoveItem(string itemName)
     {
-        int _index = items.FindIndex(item => item.name == itemName);
-        GameObject temp = items[_index];
-        items.RemoveAt(_index);
-        Destroy(temp);
+        for (int i = 0; i <= items.Count-1; i++)
+        {
+            if (items[i].name == itemName)
+            {
+                GameObject _tempItem = items[i];
+                items.RemoveAt(i);
+                Destroy(_tempItem);
+                _tempItem = null;
+                
+                break;
+            }
+        }
     }
     #endregion
     #endregion

@@ -27,7 +27,7 @@ public class ItemManagementUI : MonoBehaviour
 
     void ManageListRemove()
     {
-        for (int i = 0;i < selectedItems.Count-1; i++)
+        for (int i = 0;i <= selectedItems.Count-1; i++)
         {
             if (!items.Contains(selectedItems[i]))
             {
@@ -57,7 +57,7 @@ public class ItemManagementUI : MonoBehaviour
     {
         selectedItems.Remove(selectedItems[i]);
 
-        GameObject.Destroy(temp);
+        Destroy(temp);
 
         StartCoroutine(ItemUIUpdating());
     }
@@ -82,11 +82,17 @@ public class ItemManagementUI : MonoBehaviour
 
     public void InventoryRemove(string _name)
     {
-        for (int i = 0; i < items.Count;i++)
+        for (int f =  0; f <= items.Count-1; f++)
         {
-            if (items[i].name == _name)
-            {
-                RemovingUpdate(items[i]);
+            if (items[f].name == _name) { 
+                items.RemoveAt(f); 
+                break; 
+            }
+        }
+        for (int i = 0; i < selectedItems.Count-1;i++) {
+            if (selectedItems[i].GetComponent<button>().name == _name) {
+                selectedItems.RemoveAt(i);
+                break;
             }
         }
     }

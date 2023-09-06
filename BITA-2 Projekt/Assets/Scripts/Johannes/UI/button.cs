@@ -46,8 +46,8 @@ public class button : MonoBehaviour
         if (typeID == 0)
         {
             GameObject.Find("Player").GetComponent<InteractionManager>().RemoveItem(ItemName);
+            //Canvas.GetComponent<ItemManagementUI>().InventoryRemove(name);
             Destroy(this.gameObject);
-            Canvas.GetComponent<ItemManagementUI>().InventoryRemove(name);
         } else if (typeID == 1)
         {
             GameObject.Find("Infos").GetComponent<ItemInfo>().AddHealflask(healflask.Healstrength);

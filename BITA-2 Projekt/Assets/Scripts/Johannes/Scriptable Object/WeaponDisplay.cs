@@ -12,6 +12,12 @@ public class WeaponDisplay : MonoBehaviour
     public string ItemName;
     public string ItemDescription;
 
+    public float damage;
+    public float speed;
+    public float Range;
+    public float cooldown;
+
+
     public int typeID;
     public int ID;
 
@@ -21,6 +27,11 @@ public class WeaponDisplay : MonoBehaviour
         ItemPreview = weapon.Picture;
         ItemName = weapon.Name;
         ItemDescription = weapon.Description;
+
+        damage = weapon.Damage;
+        speed = weapon.Speed;
+        Range = weapon.Range;
+        cooldown = weapon.Cooldown;
 
         transform.name = ItemName;
 

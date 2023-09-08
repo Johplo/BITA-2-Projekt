@@ -13,13 +13,20 @@ public class ItemManagementUI : MonoBehaviour
         Wenn entfernung zum Objekt besteht, wird es geloescht.
     */
     #region Johannes
-    public InteractionManager interaction;
+    public GameObject player;
+    public GameObject panel;
 
     public List<GameObject> items;
     
     public List<GameObject> selectedItems;
 
     public GameObject ItemPrefab;
+
+    private void Awake() {
+        if (player == null) {
+            player = GameObject.Find("Player");
+        }
+    }
 
     void ManageListAdd(int i) {
         ItemUICreation(items[i].GetComponent<WeaponDisplay>().ID, items[i].GetComponent<WeaponDisplay>().typeID, items[i].GetComponent<WeaponDisplay>().ItemPreview, items[i].GetComponent<WeaponDisplay>().ItemName, items[i].GetComponent<WeaponDisplay>().ItemDescription);
@@ -42,7 +49,7 @@ public class ItemManagementUI : MonoBehaviour
 
         int i = selectedItems.Count-1;
 
-        selectedItems[i].transform.SetParent(gameObject.transform.GetChild(0));
+        selectedItems[i].transform.SetParent(panel.transform);
         
         selectedItems[i].transform.localScale = new Vector3(1,1,1);
         selectedItems[i].transform.localPosition = new Vector3(0, 275 - (50 * selectedItems.IndexOf(selectedItems[i])), 0);
@@ -82,19 +89,25 @@ public class ItemManagementUI : MonoBehaviour
 
     public void InventoryRemove(string _name)
     {
-        for (int f =  0; f <= items.Count-1; f++)
+        for (int f = 0; f <= items.Count-1; f++)
         {
-            if (items[f].name == _name) { 
-                items.RemoveAt(f); 
-                break; 
+            if (items[f].name == _name) {
+                GameObject _temp = items[f];
+                items.RemoveAt(f);
+                for (int i = 0; i <= selectedItems.Count - 1; i++) {
+                    if (selectedItems[i].GetComponent<button>().ItemName == _name) {
+                        GameObject _tempUI = selectedItems[i];
+                        selectedItems.RemoveAt(i);
+                        Destroy(_tempUI);
+                    }
+                }
+                if (!player.GetComponent<InteractionManager>().items.Contains(_temp)) {
+                    Destroy(_temp);
+                    break;
+                }
             }
         }
-        for (int i = 0; i < selectedItems.Count-1;i++) {
-            if (selectedItems[i].GetComponent<button>().name == _name) {
-                selectedItems.RemoveAt(i);
-                break;
-            }
-        }
+        
     }
     #endregion
     #endregion

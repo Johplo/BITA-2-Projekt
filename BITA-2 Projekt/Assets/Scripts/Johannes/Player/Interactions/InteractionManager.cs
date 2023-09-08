@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class InteractionManager : MonoBehaviour
 {
+    /*
+        Checkt, ob Items in der naehe sind und fuegt diese einer Liste hinzu.
+        Danach fuegt es dieses zu einem UI Manger hinzu, damit dieses Item angezeigt wird.
+    */
     #region Johannes
     public List<GameObject> items;
 
@@ -36,11 +40,7 @@ public class InteractionManager : MonoBehaviour
         {
             if (items[i].name == itemName)
             {
-                GameObject _tempItem = items[i];
                 items.RemoveAt(i);
-                Destroy(_tempItem);
-                _tempItem = null;
-                
                 break;
             }
         }

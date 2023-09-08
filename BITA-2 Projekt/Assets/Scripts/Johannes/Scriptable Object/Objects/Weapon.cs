@@ -13,6 +13,9 @@ public class Weapon : ScriptableObject
 
     public float Damage;
     public float Speed;
+    public float Range;
+    public float Cooldown;
+
     public string Name;
     public string Description;
 

@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Horizontal", moveX);
         anim.SetFloat("Vertical", moveY);
 
-        if(moveX >= 0.1f || moveY >= 0.1f)CheckDirection(moveX, moveY);
+        if(moveX >= 0.1f || moveY >= 0.1f || moveX <= -0.1f || moveY <= -0.1f) CheckDirection(moveX, moveY);
     }
 
     //Setzt die Richtung,damit der wchsel zu Idle passt

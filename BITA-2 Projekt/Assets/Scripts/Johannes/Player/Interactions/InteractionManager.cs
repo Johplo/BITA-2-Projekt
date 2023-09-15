@@ -15,6 +15,11 @@ public class InteractionManager : MonoBehaviour
 
     public ItemManagementUI itemManagementUI;
 
+
+    private void Awake()
+    {
+        itemManagementUI = FindObjectOfType<ItemManagementUI>();
+    }
     #region Triggers
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Item") && !items.Contains(collision.gameObject)) {

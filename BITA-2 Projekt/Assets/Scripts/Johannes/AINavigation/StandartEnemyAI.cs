@@ -12,6 +12,8 @@ public class StandartEnemyAI : MonoBehaviour
     public GameObject player;
 
     public GameObject hitobject;
+    public GameObject AttackEffect;
+
 
     public int damage = 1;
     public float range = 5f;
@@ -68,11 +70,9 @@ public class StandartEnemyAI : MonoBehaviour
 
     IEnumerator Attack()
     {
-        //Play attack animation
+        AttackEffect.GetComponent<ParticleSystem>().Play();
         canattack = false;
-        RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position, (target - transform.position), Mathf.Infinity);
-        hit.transform.GetComponent<Health>().TakeDamage(damage);
+        hitobject.GetComponent<Health>().TakeDamage(damage);
         yield return new WaitForSecondsRealtime(cooldown);
         canattack = true;
     }

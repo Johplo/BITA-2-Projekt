@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     #region DavidMovement
     public float moveSpeed;
@@ -109,6 +110,13 @@ public class PlayerMovement : MonoBehaviour
     {
         smoothedMovement = Vector2.SmoothDamp(smoothedMovement, moveDirection, ref smoothVelocity, 0.1f);
         rb.velocity = smoothedMovement * activeMoveSpeed;
+    }
+    #endregion
+
+    #region Johannes
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) Destroy(this);
     }
     #endregion
 }

@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using JetBrains.Annotations;
+using System.Globalization;
+using Unity.Netcode;
 
-public class ItemManagementUI : MonoBehaviour
+public class ItemManagementUI : NetworkBehaviour
 {
     /*
         Script zum erstellen von UI element, wenn sich Items in der Naehe befinden.
@@ -21,6 +23,12 @@ public class ItemManagementUI : MonoBehaviour
     public List<GameObject> selectedItems;
 
     public GameObject ItemPrefab;
+
+
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) Destroy(this);
+    }
 
     private void Awake() {
         if (player == null) {

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class WeaponStats : MonoBehaviour
+public class WeaponStats : NetworkBehaviour
 {
     #region Robin
     public GameObject centerpos;
@@ -44,6 +45,12 @@ public class WeaponStats : MonoBehaviour
             }
             Debug.DrawRay(transform.position, direction * range, Color.red);
         }
+    }
+    #endregion
+    #region Johannes
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) Destroy(this);
     }
     #endregion
 }

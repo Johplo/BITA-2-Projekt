@@ -26,10 +26,17 @@ public class ItemManagementUI : MonoBehaviour
         if (player == null) {
             player = GameObject.Find("Player");
         }
+        if (panel == null) {
+            panel = transform.Find("PickUpUI").gameObject;
+        }
     }
 
     void ManageListAdd(int i) {
-        ItemUICreation(items[i].GetComponent<WeaponDisplay>().ID, items[i].GetComponent<WeaponDisplay>().typeID, items[i].GetComponent<WeaponDisplay>().ItemPreview, items[i].GetComponent<WeaponDisplay>().ItemName, items[i].GetComponent<WeaponDisplay>().ItemDescription);
+        if (items[i].GetComponent<WeaponDisplay>() != null) {
+            ItemUICreation(items[i].GetComponent<WeaponDisplay>().ID, items[i].GetComponent<WeaponDisplay>().typeID, items[i].GetComponent<WeaponDisplay>().ItemPreview, items[i].GetComponent<WeaponDisplay>().ItemName, items[i].GetComponent<WeaponDisplay>().ItemDescription);
+        } else if (items[i].GetComponent<HealDisplay>() != null) {
+            ItemUICreation(items[i].GetComponent<HealDisplay>().ID, items[i].GetComponent<HealDisplay>().typeID, items[i].GetComponent<HealDisplay>().Picture, items[i].GetComponent<HealDisplay>().Name, items[i].GetComponent<HealDisplay>().Description);
+        }
     }
 
     void ManageListRemove()

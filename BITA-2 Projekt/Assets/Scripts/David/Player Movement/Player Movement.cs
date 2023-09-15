@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection = Vector2.ClampMagnitude(moveDirection, 1);
         //Alle Variablen, die Gesetz werden muessen um animationmen zum Abspielen zu bringen
-        //Setz Speed auf die geschwindigkeit.
+        //Setzt Speed auf die geschwindigkeit.
         anim.SetFloat("Speed", moveDirection.sqrMagnitude);
         //Setzt alle Axen im Animator auf die Axen vom Spieler
         anim.SetFloat("Horizontal", moveX);

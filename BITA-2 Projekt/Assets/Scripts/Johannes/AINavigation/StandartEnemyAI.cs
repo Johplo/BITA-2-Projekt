@@ -11,9 +11,15 @@ public class StandartEnemyAI : MonoBehaviour
     public Vector3 target;
     public GameObject player;
 
-    public int damage = 1;
+    public GameObject hitobject;
 
-    private bool playerNearby = false;
+    public int damage = 1;
+    public float range = 5f;
+    public float cooldown = 2f;
+
+
+    public bool playerNearby = false;
+    public bool canattack = true;
 
     public NavMeshAgent agent;
 
@@ -30,27 +36,27 @@ public class StandartEnemyAI : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, agent.speed);
 
+        CheckforPlayer();
+
         if (!playerNearby) {
             SetPath();
-        } else if (playerNearby)
+        } else if (playerNearby && canattack)
         {
             SetPath();
             StartCoroutine(Attack());
         }
     }
 
-    #region triggers/colliders
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
+    #region check for player
+    void CheckforPlayer() {
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.localPosition, (target - transform.position), range);
+        Debug.DrawRay(transform.localPosition, (target - transform.position), Color.green);
+        if (Physics2D.Raycast(transform.localPosition, (target - transform.position), range) && hit.transform.tag == "Player") {
+            hitobject = hit.transform.gameObject;
             playerNearby = true;
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
+        else
         {
             playerNearby = false;
         }
@@ -63,13 +69,12 @@ public class StandartEnemyAI : MonoBehaviour
     IEnumerator Attack()
     {
         //Play attack animation
-        yield return new WaitForSecondsRealtime(3);
+        canattack = false;
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position, target);
-        if (hit.transform.CompareTag("Player"))
-        {
-            hit.transform.GetComponent<Health>().TakeDamage(damage);
-        }
+        hit = Physics2D.Raycast(transform.position, (target - transform.position), Mathf.Infinity);
+        hit.transform.GetComponent<Health>().TakeDamage(damage);
+        yield return new WaitForSecondsRealtime(cooldown);
+        canattack = true;
     }
 
     private void SetPath()

@@ -38,7 +38,7 @@ public class button : MonoBehaviour
         {
             healflask = GameObject.Find("Infos").GetComponent<ItemInfo>().FindHealflask(ID);
             weaponInfo = null;
-            ItemName = weaponInfo.Name;
+            ItemName = healflask.Name;
         }
     }
 
@@ -47,12 +47,14 @@ public class button : MonoBehaviour
     {
         if (typeID == 0)
         {
+            GameObject.Find("Player").GetComponent<WeaponStats>().AddWeapon(ID, weaponInfo.Damage, weaponInfo.Speed, weaponInfo.Range, weaponInfo.Cooldown);
             GameObject.Find("Player").GetComponent<InteractionManager>().RemoveItem(ItemName);
             Canvas.GetComponent<ItemManagementUI>().InventoryRemove(ItemName);
         } else if (typeID == 1)
         {
             GameObject.Find("Infos").GetComponent<ItemInfo>().AddHealflask(healflask.Healstrength);
             GameObject.Find("Player").GetComponent<InteractionManager>().RemoveItem(ItemName);
+            Canvas.GetComponent<ItemManagementUI>().InventoryRemove(ItemName);
             Destroy(this.gameObject);
         }
     }

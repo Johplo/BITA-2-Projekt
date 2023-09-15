@@ -11,7 +11,6 @@ public class ItemInfo : MonoBehaviour
     public List<Weapon> weaponList;
     public List<Healflask> healflasksList;
 
-
     public int healflasks;
 
     private void Awake()
@@ -25,6 +24,7 @@ public class ItemInfo : MonoBehaviour
         return weaponList[_ID];
     }
 
+    #region Healing
     public Healflask FindHealflask(int _ID)
     {
         return healflasksList[_ID];
@@ -39,6 +39,11 @@ public class ItemInfo : MonoBehaviour
     {
         return healflasks;
     }
+
+    public void UpdateHealth() {
+        healflasks -= 1;
+    }
     #endregion
     #endregion
+#endregion
 }

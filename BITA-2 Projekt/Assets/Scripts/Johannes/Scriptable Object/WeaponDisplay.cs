@@ -18,7 +18,7 @@ public class WeaponDisplay : MonoBehaviour
     public float cooldown;
 
 
-    public int typeID;
+    public int typeID = 0;
     public int ID;
 
     private void Start()

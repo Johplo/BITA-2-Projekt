@@ -7,6 +7,7 @@ public class WeaponStats : MonoBehaviour
     #region Robin
     public GameObject centerpos;
 
+    public int ID;
     public float damage;
     public float speed;
     public float range;
@@ -20,8 +21,9 @@ public class WeaponStats : MonoBehaviour
         }
     }
 
-    public void AddWeapon(float _damage, float _speed, float _range, float _cooldown)
+    public void AddWeapon(int _ID, float _damage, float _speed, float _range, float _cooldown)
     {
+        this.ID = _ID;
         this.damage = _damage;
         this.speed = _speed;
         this.range = _range;
@@ -31,7 +33,7 @@ public class WeaponStats : MonoBehaviour
     private void Update()
     {
         Vector3 Mousepos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-        Vector3 direction = (Mousepos - transform.position) * 200;
+        Vector3 direction = (Mousepos - transform.position);
         direction.Normalize();
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {

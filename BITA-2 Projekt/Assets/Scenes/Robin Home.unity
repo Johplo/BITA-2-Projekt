@@ -5074,7 +5074,7 @@ GameObject:
   - component: {fileID: 920137787}
   - component: {fileID: 920137786}
   m_Layer: 0
-  m_Name: Colider Wall
+  m_Name: Wall Colider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

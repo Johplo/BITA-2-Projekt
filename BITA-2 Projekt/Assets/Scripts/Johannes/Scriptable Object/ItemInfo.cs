@@ -14,7 +14,15 @@ public class ItemInfo : NetworkBehaviour
     public List<Healflask> healflasksList;
 
     public int healflasks;
+    public string PlayerName = "Player";
 
+    private void Start()
+    {
+        if (GameObject.Find("Infos"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -29,6 +37,10 @@ public class ItemInfo : NetworkBehaviour
         return weaponList[_ID];
     }
 
+    public void SetName()
+    {
+        PlayerName = PlayerPrefs.GetString("Name");
+    }
     #region Healing
     public Healflask FindHealflask(int _ID)
     {

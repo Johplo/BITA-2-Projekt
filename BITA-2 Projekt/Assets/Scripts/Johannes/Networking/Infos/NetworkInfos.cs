@@ -15,6 +15,7 @@ public class NetworkInfos : NetworkBehaviour
     public void SendPlayernameServerRPC(string _name)
     {
         playernames.Value.Add( _name );
+        Debug.Log("Connected" + _name);
     }
 
     public override void OnNetworkSpawn()

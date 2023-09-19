@@ -6,11 +6,24 @@ using UnityEngine;
 public class NetworkInfos : NetworkBehaviour
 {
     #region Johannes
-    public List<string> playernames;
+    private NetworkVariable<List<string>> playernames = new(writePerm: NetworkVariableWritePermission.Server);
 
-    public string HostAddress;
+    private NetworkVariable<string> HostAddress = new(writePerm: NetworkVariableWritePermission.Server);
+    private NetworkVariable<int> HostPort = new(writePerm: NetworkVariableWritePermission.Server);
 
-    public string HostPort;
+    [ServerRpc]
+    public void SendPlayernameServerRPC(string _name)
+    {
+        playernames.Value.Add( _name );
+    }
 
+    public override void OnNetworkSpawn()
+    {
+        if (IsHost || IsServer)
+        {
+            HostAddress.Value = GameObject.Find("Canvas").GetComponent<NetworkButtons>().GetHostIP();
+            HostPort.Value = GameObject.Find("Canvas").GetComponent<NetworkButtons>().GetHostPort();
+        }
+    }
     #endregion
 }

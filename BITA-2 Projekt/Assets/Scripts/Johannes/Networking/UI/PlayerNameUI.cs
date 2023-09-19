@@ -11,7 +11,7 @@ public class PlayerNameUI : MonoBehaviour
 
     private void Awake()
     {
-        Name = GameObject.Find("Infos").GetComponent<ItemInfo>().name;
+        Name = GameObject.Find("Infos").GetComponent<ItemInfo>().PlayerName;
         NameField.GetComponent<TMP_Text>().text = Name;
     }
     #endregion

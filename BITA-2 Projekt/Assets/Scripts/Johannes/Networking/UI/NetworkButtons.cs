@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -16,7 +18,11 @@ public class NetworkButtons : MonoBehaviour
     public string IPAddress = "0.0.0.0";
     public int Port = 7777;
 
+    public GameObject NametagHolder;
+
     public string myAddressGlobal;
+    public string mylocalAddress;
+
 
     private void Awake()
     {
@@ -29,6 +35,7 @@ public class NetworkButtons : MonoBehaviour
     private void Start()
     {
         FindGlobalIP();
+        GetLocalIPAddress();
     }
 
     #region Publication
@@ -50,14 +57,25 @@ public class NetworkButtons : MonoBehaviour
 
     public void HostButton()
     {
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", (ushort)Port);
-        NetworkManager.Singleton.StartHost();
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("0.0.0.0", (ushort)Port);
+        try
+        {
+            NetworkManager.Singleton.StartHost();
+        } catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
     }
 
     public void JoinButton()
     {
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(IPAddress, (ushort)Port);
-        NetworkManager.Singleton.StartClient();
+        try
+        {
+            NetworkManager.Singleton.StartClient();
+        } catch (Exception ex){
+            Debug.LogException(ex);
+        }
     }
 
     public void MenuButton()
@@ -81,7 +99,7 @@ public class NetworkButtons : MonoBehaviour
     }
     #endregion
     #endregion
-    #region GetglobalIP
+    #region GetIPs
     private void FindGlobalIP()
     {
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.ipify.org");
@@ -108,6 +126,18 @@ public class NetworkButtons : MonoBehaviour
             myAddressGlobal = "127.0.0.1";
         } //catch
         //myAddressGlobal=new System.Net.WebClient().DownloadString("https://api.ipify.org");
+    }
+    public void GetLocalIPAddress()
+    {
+        IPHostEntry hostEntry = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (IPAddress ip in hostEntry.AddressList)
+        {
+            if (ip.AddressFamily == AddressFamily.InterNetwork)
+            {
+                mylocalAddress = ip.ToString();
+                break;
+            } //if
+        } //foreach
     }
     #endregion
     #endregion

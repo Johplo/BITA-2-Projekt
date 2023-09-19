@@ -6,7 +6,7 @@ using UnityEngine;
 public class NetworkInfos : NetworkBehaviour
 {
     #region Johannes
-    private NetworkVariable<List<string>> playernames = new(writePerm: NetworkVariableWritePermission.Server);
+    private List<string> playernames;
 
     private NetworkVariable<string> HostAddress = new(writePerm: NetworkVariableWritePermission.Server);
     private NetworkVariable<int> HostPort = new(writePerm: NetworkVariableWritePermission.Server);
@@ -14,7 +14,7 @@ public class NetworkInfos : NetworkBehaviour
     [ServerRpc]
     public void SendPlayernameServerRPC(string _name)
     {
-        playernames.Value.Add( _name );
+        playernames.Add( _name );
         Debug.Log("Connected" + _name);
     }
 

@@ -9,7 +9,6 @@ public class NetworkInfos : NetworkBehaviour
     #region Johannes
     private List<string> playernames;
 
-    private NetworkVariable<char> HostAddress = new(writePerm: NetworkVariableWritePermission.Server);
     private NetworkVariable<int> HostPort = new(writePerm: NetworkVariableWritePermission.Server);
 
     [ServerRpc]
@@ -23,7 +22,7 @@ public class NetworkInfos : NetworkBehaviour
     {
         if (IsHost || IsServer)
         {
-            HostAddress.Value = Convert.ToChar(GameObject.Find("Canvas").GetComponent<NetworkButtons>().GetHostIP());
+            //HostAddress.Value = Convert.ToChar(GameObject.Find("Canvas").GetComponent<NetworkButtons>().GetHostIP());
             HostPort.Value = GameObject.Find("Canvas").GetComponent<NetworkButtons>().GetHostPort();
         }
     }

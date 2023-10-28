@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.UIElements;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementnet : NetworkBehaviour
 {
-    #region DavidMovement
+    #region Johannes
     public float moveSpeed;
 
     public Rigidbody2D rb;
@@ -32,6 +29,14 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         activeMoveSpeed = moveSpeed;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner)
+        {
+            Destroy(this);
+        }
     }
     void Update()
     {
@@ -67,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-       
+
     }
 
     void ProcessInputs()
@@ -85,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Horizontal", moveX);
         anim.SetFloat("Vertical", moveY);
 
-        if(moveX >= 0.1f || moveY >= 0.1f || moveX <= -0.1f || moveY <= -0.1f) CheckDirection(moveX, moveY);
+        if (moveX >= 0.1f || moveY >= 0.1f || moveX <= -0.1f || moveY <= -0.1f) CheckDirection(moveX, moveY);
     }
 
     //Setzt die Richtung,damit der wchsel zu Idle passt
@@ -106,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Move() 
+    void Move()
     {
         smoothedMovement = Vector2.SmoothDamp(smoothedMovement, moveDirection, ref smoothVelocity, 0.1f);
         rb.velocity = smoothedMovement * activeMoveSpeed;

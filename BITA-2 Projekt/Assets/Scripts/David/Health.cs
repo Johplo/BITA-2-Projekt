@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class Health : NetworkBehaviour
+public class Health : MonoBehaviour
 {
     #region david
     public int maxHealth = 5;
@@ -42,12 +42,6 @@ public class Health : NetworkBehaviour
         {
             currentHealth = maxHealth;
         }
-    }
-    #endregion
-    #region Johannes
-    public override void OnNetworkSpawn()
-    {
-        if (!IsOwner) Destroy(this);
     }
     #endregion
 }

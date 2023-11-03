@@ -18,10 +18,10 @@ public class ItemInfo: MonoBehaviour
 
     private void Start()
     {
-        if (GameObject.Find("Infos"))
+        /*if (GameObject.Find("Infos"))
         {
             Destroy(this.gameObject);
-        }
+        }*/
     }
     private void Awake()
     {

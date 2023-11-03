@@ -80,15 +80,6 @@ public class ItemManagementUI : NetworkBehaviour
         selectedItems.Remove(selectedItems[i]);
 
         Destroy(temp);
-
-        StartCoroutine(ItemUIUpdating());
-    }
-
-    IEnumerator ItemUIUpdating() {
-        yield return new WaitForSecondsRealtime(1);
-        for (int i = 0; i < selectedItems.Count - 1; i++) {
-            selectedItems[i].transform.localPosition = new(0, 275 - (50 * i), 0);
-        }
     }
 
     #region Valuepublication
@@ -116,7 +107,7 @@ public class ItemManagementUI : NetworkBehaviour
                         Destroy(_tempUI);
                     }
                 }
-                if (!player.GetComponent<InteractionManager>().items.Contains(_temp)) {
+                if (!player.GetComponentInChildren<InteractionManager>().items.Contains(_temp)) {
                     Destroy(_temp);
                     break;
                 }

@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Networking/MainMenuNetwork.unity
     guid: 336dd9894932ac54c84bd734bc60677d
+  - enabled: 1
+    path: Assets/Scenes/Networking/MultiplayerMainMenu.unity
+    guid: fc036fb3adb4e83408c5cf8b2bd43e5a
   m_configObjects: {}

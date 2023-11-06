@@ -19,7 +19,7 @@ public class RelayExample : MonoBehaviour
     [SerializeField] private GameObject _buttons;
 
     private UnityTransport _transport;
-    private const int MaxPlayers = 5;
+    private int MaxPlayers = 5;
 
     private async void Awake()
     {
@@ -65,6 +65,11 @@ public class RelayExample : MonoBehaviour
     {
         Destroy(GameObject.Find("NetworkManager"));
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ChangeMaxPlayers(string maxPlayers)
+    {
+        MaxPlayers = int.Parse(maxPlayers);
     }
     #endregion
 }

@@ -1,16 +1,14 @@
 using UnityEngine.Audio;
 using UnityEngine;
-using System; 
+using System;
+
+#region leo 
 
 public class AudioManager : MonoBehaviour {
     
     public Sound[] sounds;
 
     public static AudioManager instance;
-
-
-
-
 
     void Awake() {
 
@@ -22,7 +20,6 @@ public class AudioManager : MonoBehaviour {
             return;
         }
         
-
         DontDestroyOnLoad(gameObject);
 
         foreach(Sound s in sounds)
@@ -43,9 +40,6 @@ public class AudioManager : MonoBehaviour {
 
     }
 
-    
-
-
 
     public void Play (string name)
     {
@@ -56,7 +50,6 @@ public class AudioManager : MonoBehaviour {
             return;
         }
         s.source.Play();
-
-
     }
 }
+#endregion

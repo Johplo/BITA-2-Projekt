@@ -5,10 +5,10 @@ using System.Security.Cryptography;
 using Unity.Netcode;
 using UnityEngine;
 
-public class ItemInfo : NetworkBehaviour
+public class ItemInfo: MonoBehaviour
 {
     //Script zum Managen aller Items im Spiel.
-    //IItems werden in IDs fuer jeden typ aufgeteilt und in dieser ID einer Eigenen zugewiesen.
+    //Items werden in IDs fuer jeden typ aufgeteilt und in dieser ID einer Eigenen zugewiesen.
     #region Johannes
     public List<Weapon> weaponList;
     public List<Healflask> healflasksList;
@@ -18,19 +18,16 @@ public class ItemInfo : NetworkBehaviour
 
     private void Start()
     {
-        if (GameObject.Find("Infos"))
+        /*if (GameObject.Find("Infos"))
         {
             Destroy(this.gameObject);
-        }
+        }*/
     }
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
     }
-    public override void OnNetworkSpawn()
-    {
-        if (!IsOwner) Destroy(this);
-    }
+
     #region PublicVariables
     public Weapon FindWeapon(int _ID)
     {

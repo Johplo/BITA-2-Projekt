@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     #region DavidMovement
     public float moveSpeed;
@@ -110,13 +110,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         smoothedMovement = Vector2.SmoothDamp(smoothedMovement, moveDirection, ref smoothVelocity, 0.1f);
         rb.velocity = smoothedMovement * activeMoveSpeed;
-    }
-    #endregion
-
-    #region Johannes
-    public override void OnNetworkSpawn()
-    {
-        if (!IsOwner) Destroy(this);
     }
     #endregion
 }

@@ -5,7 +5,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InteractionManager : NetworkBehaviour
+public class InteractionManager : MonoBehaviour
 {
     /*
         Checkt, ob Items in der naehe sind und fuegt diese einer Liste hinzu.
@@ -15,11 +15,6 @@ public class InteractionManager : NetworkBehaviour
     public List<GameObject> items;
 
     public ItemManagementUI itemManagementUI;
-
-    public override void OnNetworkSpawn()
-    {
-        if (!IsOwner) Destroy(this);
-    }
 
     private void Awake()
     {

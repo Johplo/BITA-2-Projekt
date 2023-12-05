@@ -1,55 +1,17 @@
-using UnityEngine.Audio;
 using UnityEngine;
-using System;
 
-#region leo 
+public class AudioManager : MonoBehaviour
+{
+    [Header("---------- Audio Source ----------")]
+    [SerializeField] AudioSource musikSource;
+    [SerializeField] AudioSource SFXSource;
 
-public class AudioManager : MonoBehaviour {
-    
-    public Sound[] sounds;
+    [Header("---------- Audio Clip ----------")]
+    public AudioClip background;
 
-    public static AudioManager instance;
-
-    void Awake() {
-
-        if (instance == null)
-            instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        
-        DontDestroyOnLoad(gameObject);
-
-        foreach(Sound s in sounds)
-        {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
-        }
-    }
-
-    void Start()
+    private void Start()
     {
-        Play("Theme");
-        Play("Theme1"); 
-
-    }
-
-
-    public void Play (string name)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + name + " konte nicht gefunden werden!");
-            return;
-        }
-        s.source.Play();
+        musikSource.clip = background;
+        musikSource.Play();
     }
 }
-#endregion

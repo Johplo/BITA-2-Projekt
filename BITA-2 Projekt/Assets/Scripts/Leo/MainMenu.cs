@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     #region leo 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Lab");
+        SceneManager.LoadScene("Home");
     }
 
     public void QuitGame ()

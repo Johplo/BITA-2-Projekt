@@ -13,11 +13,21 @@ public class MainMenu : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
+    public void Playclick()
+    {
+        audioManager.PlaySFX(audioManager.ClickSound);
+    }
+
     #region leo 
     public void PlayGame()
     {
-        audioManager.PlaySFX( audioManager.ClickSound );
-    
+        StartCoroutine(Playclickplay());
+    }
+
+    public IEnumerator Playclickplay()
+    {
+        audioManager.PlaySFX(audioManager.ClickSound);
+        yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene("Home");
     }
 

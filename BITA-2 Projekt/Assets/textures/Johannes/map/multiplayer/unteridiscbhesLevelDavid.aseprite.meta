@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638378989422154543
+  platformSettingsDirtyTick: 638392861967620020
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -142,15 +142,15 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: unteridiscbhesLevelDavid_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 65
-      height: 109
+      width: 700
+      height: 700
     spriteID: 4e51571a4d211024aa261f67786c72cf
     spriteBone: []
     spriteOutline: []
@@ -162,36 +162,16 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: unteridiscbhesLevelDavid_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 86
-      y: 9
-      width: 65
-      height: 109
+      x: 754
+      y: 4
+      width: 700
+      height: 700
     spriteID: 7c5f7d83a20b5234d98d52048d443164
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: unteridiscbhesLevelDavid_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 223
-      y: 51
-      width: 66
-      height: 67
-    spriteID: 606286c719bd639449a66f5d84c7c327
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -211,10 +191,10 @@ ScriptedImporter:
     - name: unteridiscbhesLevelDavid
       frameIndex: 0
       cellRect:
-        x: 11
-        y: 50
-        width: 285
-        height: 114
+        x: 0
+        y: 0
+        width: 1450
+        height: 700
       spriteId: babf4154a03ae3449b2044b035f707bd
     linkedCells: []
     parentIndex: -1
@@ -269,4 +249,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 296, y: 164}
+  canvasSize: {x: 1450, y: 700}

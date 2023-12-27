@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class BasicNetworkingAIENemy : MonoBehaviour
 {
     #region Johannes
-    //Initialiesierung von objekten (Spielerposition, ...).
     [SerializeField]
     private List<GameObject> player;
 
@@ -16,6 +15,7 @@ public class BasicNetworkingAIENemy : MonoBehaviour
     public int damage = 1;
     public float range = 5f;
     public float cooldown = 2f;
+    private int selectedPlayer;
 
     public bool playerNearby = false;
     public bool canattack = true;
@@ -28,6 +28,16 @@ public class BasicNetworkingAIENemy : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (playerNearby == true)
+        {
+            StartCoroutine(attackPlayer(selectedPlayer));
+        } else
+        {
+            CheckforPlayer(selectedPlayer);
+        }
+    }
 
     private void CheckforPlayer(int t) {
         RaycastHit2D hit;
@@ -40,6 +50,20 @@ public class BasicNetworkingAIENemy : MonoBehaviour
         else {
             playerNearby = false;
         }
+    }
+
+    IEnumerator attackPlayer(int t)
+    {
+        AttackEffect.GetComponent<ParticleSystem>().Play();
+        canattack = false;
+        player[t].GetComponent<Health>().TakeDamage(damage);
+        yield return new WaitForSecondsRealtime(cooldown);
+        canattack = true;
+    }
+
+    void setPath(int t)
+    {
+        agent.SetDestination(new Vector3(player[t].transform.position.x, player[t].transform.position.y, this.transform.position.z));
     }
     #endregion
 }

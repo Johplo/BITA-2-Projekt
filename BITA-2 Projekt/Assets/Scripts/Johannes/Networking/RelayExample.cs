@@ -17,6 +17,7 @@ public class RelayExample : MonoBehaviour
     [SerializeField] private TMP_Text _joinCodeText;
     [SerializeField] private TMP_InputField _joinInput;
     [SerializeField] private GameObject _buttons;
+    [SerializeField] private GameObject _Readybutton;
 
     private UnityTransport _transport;
     private int MaxPlayers = 5;
@@ -44,6 +45,7 @@ public class RelayExample : MonoBehaviour
 
         Allocation a = await RelayService.Instance.CreateAllocationAsync(MaxPlayers);
         _joinCodeText.text = await RelayService.Instance.GetJoinCodeAsync(a.AllocationId);
+        _Readybutton.SetActive(true);
 
         _transport.SetHostRelayData(a.RelayServer.IpV4, (ushort)a.RelayServer.Port, a.AllocationIdBytes, a.Key, a.ConnectionData);
 
@@ -59,6 +61,7 @@ public class RelayExample : MonoBehaviour
         _transport.SetClientRelayData(a.RelayServer.IpV4, (ushort)a.RelayServer.Port, a.AllocationIdBytes, a.Key, a.ConnectionData, a.HostConnectionData);
 
         NetworkManager.Singleton.StartClient();
+        _Readybutton.SetActive(true);
     }
 
     public void Return()

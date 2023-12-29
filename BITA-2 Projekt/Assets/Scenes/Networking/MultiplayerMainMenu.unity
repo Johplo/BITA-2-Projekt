@@ -289,6 +289,7 @@ MonoBehaviour:
   _joinCodeText: {fileID: 1338300963}
   _joinInput: {fileID: 404413857}
   _buttons: {fileID: 272985643}
+  _Readybutton: {fileID: 0}
 --- !u!4 &65620457
 Transform:
   m_ObjectHideFlags: 0
@@ -929,6 +930,7 @@ GameObject:
   - component: {fileID: 318847882}
   - component: {fileID: 318847881}
   - component: {fileID: 318847880}
+  - component: {fileID: 318847883}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1014,6 +1016,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &318847883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318847879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ae91d56ca01c444b623b5b6f948d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: []
+  Scenes:
+  - NetUnderground1
 --- !u!1 &378590374
 GameObject:
   m_ObjectHideFlags: 0

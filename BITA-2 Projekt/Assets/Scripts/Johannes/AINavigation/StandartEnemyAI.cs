@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.AI;
-
 
 public class StandartEnemyAI : MonoBehaviour
 {
@@ -32,9 +29,9 @@ public class StandartEnemyAI : MonoBehaviour
 
     private void Update()
     {
-        target = player.transform.position;
+        target = new Vector3(player.transform.position.x, player.transform.position.y - 0.75f, player.transform.position.z);
 
-        float angle = Mathf.Atan2(player.transform.position.y - transform.position.y, player.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(player.transform.position.y - 0.75f - transform.position.y, player.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, agent.speed);
 
@@ -52,9 +49,10 @@ public class StandartEnemyAI : MonoBehaviour
     #region check for player
     void CheckforPlayer() {
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.localPosition, (target - transform.position), range);
-        Debug.DrawRay(transform.localPosition, (target - transform.position), Color.green);
-        if (Physics2D.Raycast(transform.localPosition, (target - transform.position), range) && hit.transform.tag == "Player") {
+        hit = Physics2D.Raycast(new Vector3(transform.localPosition.y, transform.localPosition.y, 0f), (target - transform.position), range);
+        Debug.DrawRay(transform.localPosition, (target - transform.position) , Color.green);
+        if (Physics2D.Raycast(new Vector3(transform.localPosition.y, transform.localPosition.y, 0f), (target - transform.position), range) && hit.transform.CompareTag("Player")) {
+            Debug.LogWarning("Player was hit!!!!!");
             hitobject = hit.transform.gameObject;
             playerNearby = true;
         }
@@ -79,7 +77,7 @@ public class StandartEnemyAI : MonoBehaviour
 
     private void SetPath()
     {
-        agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
+        agent.SetDestination(new Vector3(target.x, target.y, this.transform.position.z));
     }
     #endregion
 

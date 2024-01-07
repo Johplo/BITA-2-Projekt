@@ -26,6 +26,8 @@ public class PlayerMovementNet : NetworkBehaviour
 
     public override void OnNetworkSpawn() {
         if (!IsOwner) Destroy(this);
+
+        GameObject.Find("MapvotingPanel").GetComponent<MapVoting>().GetClientId();
     }
 
     void Start() {

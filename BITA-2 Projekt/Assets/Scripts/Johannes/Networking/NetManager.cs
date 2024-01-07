@@ -45,9 +45,9 @@ public class NetManager : MonoBehaviour
     /// Returns the List of Scene names as an array.
     /// </summary>
     /// <returns>String-Array</returns>
-    public string[] GetScenes()
+    public List<string> GetScenes()
     {
-        return Scenes.ToArray();
+        return Scenes;
     }
     #endregion
     #endregion

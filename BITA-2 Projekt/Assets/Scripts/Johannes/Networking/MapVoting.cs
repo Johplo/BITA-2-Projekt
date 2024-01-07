@@ -6,26 +6,37 @@ public class MapVoting : NetworkBehaviour
 {
     #region Johannes
     [SerializeField] private GameObject networkManager;
-    [SerializeField] private string[] scenes;
+    [SerializeField] private List<string> scenes;
 
     private int[] votings;
     private NetManager netmanager;
 
-    public override void OnNetworkSpawn()
+    private bool didvote;
+    private int votedindex;
+
+    private void Awake()
     {
-        GetClientId();
-        //Gets the NetManager from the NetworkManager gameobject.
+        if (networkManager == null)
+        {
+            networkManager = GameObject.Find("NetworkManager");
+        }
         netmanager = networkManager.GetComponent<NetManager>();
-        scenes = netmanager.GetScenes();
-        votings = new int[scenes.Length];
     }
 
-    void GetClientId(ServerRpcParams serverRpcParams = default)
+    public void GetClientId(ServerRpcParams serverRpcParams = default)
     {
         ulong clientId = serverRpcParams.Receive.SenderClientId;
         GetMapVottingsServerRpc(clientId);
     }
 
+    public void AddMaplocal(string name)
+    {
+        int index = scenes.IndexOf(name);
+        AddVotingtoMapClientRpc(index, didvote, votedindex);
+        votedindex = index;
+    }
+
+    #region JoinRPCs
     [ServerRpc]
     public void GetMapVottingsServerRpc(ulong clientId)
     {
@@ -55,5 +66,38 @@ public class MapVoting : NetworkBehaviour
             votings[t] = voting;
         }
     }
+    #endregion
+    #region Mapvoting
+    /// <summary>
+    /// Adds one voting to the selected map.
+    /// </summary>
+    /// <param name="mapname"></param>
+    /// <param name="hasvoted"></param>
+    /// <param name="previousIndex"></param>
+    [ClientRpc]
+    private void AddVotingtoMapClientRpc(int mapindex, bool hasvoted,  int previousIndex)
+    {
+        if (hasvoted)
+        {
+            votings[previousIndex] -= 1;
+        }
+
+        votings[mapindex] += 1;
+    }
+    #endregion
+    #region get/set
+    public string GetMostVotedName()
+    {
+        int index = 0;
+        for (int i = 1; i < votings.Length; i++)
+        {
+            if (votings[i] > votings[i - 1])
+            {
+                index = i;
+            }
+        }
+        return scenes[index];
+    }
+    #endregion
     #endregion
 }

@@ -61,7 +61,6 @@ public class RelayExample : MonoBehaviour
         _transport.SetClientRelayData(a.RelayServer.IpV4, (ushort)a.RelayServer.Port, a.AllocationIdBytes, a.Key, a.ConnectionData, a.HostConnectionData);
 
         NetworkManager.Singleton.StartClient();
-        _Readybutton.SetActive(true);
     }
 
     public void Return()

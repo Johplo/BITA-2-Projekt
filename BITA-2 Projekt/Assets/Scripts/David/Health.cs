@@ -20,14 +20,15 @@ public class Health : MonoBehaviour
     {
         currentHealth -= amount;
         //Erstellt einen Effekt, wenn der Spieler Schaden bekommt
-        //GameObject particle = GameObject.Instantiate(DamageParticle);
-        //particle.transform.position = transform.position;
-        //particle.GetComponent<ParticleSystem>().Play();
+        GameObject particle = GameObject.Instantiate(DamageParticle);
+        particle.transform.position = transform.position;
+        particle.GetComponent<ParticleSystem>().Play();
 
-        //Destroy(particle, .6f);
+        Destroy(particle, .6f);
         if (currentHealth <= 0) 
         {
             //Tod
+            Destroy(this.GameObject);
         }
     }
 

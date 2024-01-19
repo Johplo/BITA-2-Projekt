@@ -1,3 +1,5 @@
+using System.Security;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -29,6 +31,8 @@ public class volummesettings : MonoBehaviour
         myMixer.SetFloat( "music", Mathf.Log10( volume )*20 );      
         PlayerPrefs.SetFloat( "musicVolume", volume );
     }
+
+    
 
     public void SetSFXVolume()
     {

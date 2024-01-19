@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0) 
         {
             //Tod
-            Destroy(this.GameObject);
+            Destroy(this.gameObject);
         }
     }
 

@@ -48,6 +48,16 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit(); 
     }
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void PrevScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
 }
 
 #endregion

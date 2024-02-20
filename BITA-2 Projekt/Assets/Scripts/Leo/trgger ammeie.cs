@@ -38,5 +38,6 @@ public class trggerammeie : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2);
         UiObject.SetActive(false);
+        
     }
 }

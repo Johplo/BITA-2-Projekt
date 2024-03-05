@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour   
 {
+    #region leo 
     AudioManager audioManager;
     private void Awake()
     {
@@ -18,7 +19,6 @@ public class MainMenu : MonoBehaviour
         audioManager.PlaySFX(audioManager.ClickSound);
     }
 
-    #region leo 
     public void PlayGame()
     {
         StartCoroutine(Playclickplay());

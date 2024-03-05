@@ -36,6 +36,8 @@ public class MapVoting : NetworkBehaviour
         votedindex = index;
     }
 
+
+
     #region JoinRPCs
     [ServerRpc]
     public void GetMapVottingsServerRpc(ulong clientId)
